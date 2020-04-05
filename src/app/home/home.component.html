@@ -1,0 +1,88 @@
+
+<div class="container-fluid">
+    <div style="align-content: center;display: block;margin: auto; width: 400px">
+        <span>
+        <input class="form-control" type="text" placeholder="search city"
+        aria-label="search" (keyup.enter)="addInput($event)" name="city">
+        <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
+        <small class="form-text text-muted" >Please provide comma (,) seperated values for multiple cities</small>
+        </span>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <!--left column-->
+        <div class="col-2 collapse show d-md-flex bg-light pt-2 pl-0 min-vh-100" id="sidebar">
+            <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h4>Cities</h4>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-sm">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let city of cities" (click)="fetchWeatherData(city)">
+                    {{city}} 
+                </li>
+            </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!--right column-->
+        <div class="col pt-2">
+            <div class="col-sm">
+                <h4>Weather Report</h4>
+            </div>
+            <table *ngIf="isFound()" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            parameter
+                        </th>
+                        <th scope="col">
+                            data
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Longitude : </td>
+                        <td>{{this.weatherForecast.coord?.lon}}</td>
+                    </tr>
+                    <tr>
+                        <td>Latitude : </td>
+                        <td>{{this.weatherForecast.coord?.lat}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure : </td>
+                        <td>{{this.weatherForecast.main?.pressure}}</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity : </td>
+                        <td>{{this.weatherForecast.main?.humidity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Temperature : </td>
+                        <td>{{this.weatherForecast.main?.temp}}</td>
+                    </tr>
+                    <tr>
+                        <td>Max Temparature : </td>
+                        <td>{{this.weatherForecast.main?.temp_max}}</td>
+                    </tr>
+                    <tr>
+                        <td>Min Temparature : </td>
+                        <td>{{this.weatherForecast.main?.temp_min}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="alert alert-info" *ngIf="!isFound()"  style=" width: fit-content; display:block ;margin-top: 30px;">
+             Please enter the city names to get weather report !!    
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
