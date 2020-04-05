@@ -1,4 +1,4 @@
-# HitachiWeatherApp
+# WeatherApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 Run command : npm install to get all the required node modules.
